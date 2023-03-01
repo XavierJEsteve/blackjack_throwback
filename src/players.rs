@@ -25,7 +25,7 @@ impl Hand{
     }
     pub fn print_hand(&self) {
         for c in &self.cards {
-            println!("{:?}",c);
+            println!("{:?} of {:?}",c.name, c.suit);
         }
     }
 }

@@ -4,6 +4,8 @@ mod deck;
 mod prelude {
 
     pub use rand::{thread_rng, Rng};
+    use std::char;
+    use std::env;
 
     pub use crate::players::*;
     pub use crate::deck::*;
@@ -19,6 +21,7 @@ mod prelude {
 use prelude::*;
 
 fn main() {
+    //std::env::set_var("RUST_BACKTRACE", "full");
     println!("Welcome to blackjack!");
     println!("This is a throwback to my first programming project I made in Java (ew).");
     println!("In this game it's just you and the dealer. 1 deck is used");

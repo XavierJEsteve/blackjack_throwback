@@ -10,10 +10,10 @@ pub enum Suit {
 
 #[derive(Clone, Copy, Debug)]
 pub struct Card {
-    number: i32,
-	ace: bool,
-	face: bool,
-    suit: Suit,
+    value1: i32,
+    value2: i32,
+	pub name: char,
+    pub suit: Suit,
 }                                                                                                                                                                    
 
 #[derive(Debug)]
@@ -24,20 +24,42 @@ pub struct Deck{
 
 impl Card {
 	pub fn new(number: i32, suit: Suit) -> Self{
-		let mut ace = false;
-		let mut face = false;
+		let mut value1 = 0;
+		let mut value2 = 0;
+		let mut name: char = char::MAX;
 
+		// Just being thurough
 		if number == 1 {
-			ace = true;
+			value1 = 1;
+			value2 = 11;
+			name = 'A';
 		}
-		if number > 10 {
-			face = true;
+		else if number >= 10 && number <= 13 {
+			value1 = 10;
+			value2 = i32::MAX;
+			match number {
+				10 => name = 'T',
+				11 => name = 'J',
+				12 => name = 'Q',
+				13 => name = 'K',
+				_ => ()
+
+			}
+		} 
+		else {
+			value1 	= number;
+			value2 	= i32::MAX;
+			let c = char::from_digit(number as u32, 10);
+			match c {
+				Some(c) => name = c,
+				None => println!("Problem assigning name for {}", number),
+			}
 		}
 
 		Card { 
-			number,
-			ace,
-			face,
+			value1,
+			value2,
+			name,
 			suit
 		}
 	}
