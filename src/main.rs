@@ -28,13 +28,18 @@ fn main() {
         handcount += 1;
         println!("*****************");
         println!("HAND {} ", handcount);
+        
+        // Build Deck
         let mut deck = Deck::new();
         deck.build_deck();
 
+        //Build Player and Dealer
+        let mut player = Player::new();
+        let mut dealer = Dealer::new();
 
-
-
-
+        // Deal starting cards (only the dealer can do this. It acts as a sort of game controller)
+        dealer.deal_cards(&mut player, &mut deck);
+        player.hand.print_hand();
         println!("*****************");
         break;
     }
